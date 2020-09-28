@@ -20,7 +20,15 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        return 'edit';
+        return view('order.edit', ['order' => $order]);
     }
 
+    /**
+     * @param  Order  $order
+     * @return Response
+     */
+    public function update(Order $order)
+    {
+        return 'uppdate';
+    }
 }

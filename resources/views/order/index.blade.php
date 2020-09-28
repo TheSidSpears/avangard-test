@@ -8,7 +8,7 @@
     </tr>
     @foreach ($orders as $order)
         <tr>
-            <td>{{ $order->id }}</td>
+            <td><a href="{{ route('order.edit', $order)}}">{{ $order->id }}</a></td>
             <td>{{ $order->partner->name }}</td>
             <td>{{ $order->countPrice() }}</td>
             <td>

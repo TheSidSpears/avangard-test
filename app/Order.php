@@ -13,15 +13,15 @@ class Order extends Model
     const STATUS_CONFIRMED = 'подтверждён';
     const STATUS_COMPLETED = 'завершен';
 
+    public $statuses = [
+        0  => self::STATUS_NEW,
+        10 => self::STATUS_CONFIRMED,
+        20 => self::STATUS_COMPLETED,
+    ];
+
     public function getStatusAttribute($value): string
     {
-        $statuses = [
-            0 => self::STATUS_NEW,
-            10 => self::STATUS_CONFIRMED,
-            20 => self::STATUS_COMPLETED,
-        ];
-
-        return $statuses[$value];
+        return $this->statuses[$value];
     }
 
     public function countPrice()
