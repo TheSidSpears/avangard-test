@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('bryansk-weather', 'WeatherController@index');
+Route::get('temperature/{city}', 'WeatherController@currentTemperature');
