@@ -15,4 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('order', 'OrderController', [
+    'only' => ['index', 'edit']
+]);
+
 Route::get('temperature/{city}', 'WeatherController@currentTemperature');
