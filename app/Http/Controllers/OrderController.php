@@ -9,7 +9,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::with('products')->paginate(20);
         return view('order.index', ['orders' => $orders]);
     }
 
@@ -20,7 +20,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        return 'edit';
     }
 
 }
