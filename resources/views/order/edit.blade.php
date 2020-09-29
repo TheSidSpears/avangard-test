@@ -8,11 +8,9 @@
     <label for="partner">Partner</label>
     <input type="email" name="partner" value="{{ $order->partner->name }}">
 
-    {{--    <label for="email">Products TODO</label>--}}
-    {{--    <input type="email" name="email">--}}
-
+    <h1>Продукты</h1>
     @foreach($order->products as $product)
-
+        <p>Продукт: {{ $product->name }}, кол-во: {{ $product->pivot->quantity }}</p>
     @endforeach
 
     <label for="status">Status</label>
@@ -22,6 +20,5 @@
         @endforeach
     </select>
 
-    <p>Price:</p>
-    <p>123123</p>
+    <p>Price: {{ $order->countPrice() }}</p>
 </form>
