@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\DB;
 
 class Order extends Model
 {
@@ -26,9 +27,14 @@ class Order extends Model
 
     public function countPrice()
     {
-        return $this->products()
+        $res = DB::table('products')
+            ->selectRaw('sum(products.price * quantity) as price')
+            ->join('order_products', 'products.id', '=', 'order_products.id')
+            ->where('order_products.order_id', $this->id)
             ->groupBy('order_products.order_id')
-            ->sum('order_products.price');
+            ->first();
+
+        return $res === null ? 0 : $res->price;
     }
 
     public function partner(): BelongsTo

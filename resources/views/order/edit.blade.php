@@ -11,6 +11,10 @@
     {{--    <label for="email">Products TODO</label>--}}
     {{--    <input type="email" name="email">--}}
 
+    @foreach($order->products as $product)
+
+    @endforeach
+
     <label for="status">Status</label>
     <select name="status">
         @foreach($order->statuses as $key => $status)
