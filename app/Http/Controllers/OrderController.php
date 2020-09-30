@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateOrder;
 use App\Order;
+use App\Partner;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -25,7 +26,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order): View
     {
-        return view('order.edit', ['order' => $order]);
+        return view('order.edit', ['order' => $order, 'partners' => Partner::all()]);
     }
 
     /**
@@ -36,7 +37,6 @@ class OrderController extends Controller
     public function update(UpdateOrder $request, Order $order): RedirectResponse
     {
         $order->update($request->all());
-        $order->partner()->update($request->partner);
 
         return redirect()->back();
     }

@@ -16,7 +16,7 @@ class UpdateOrder extends FormRequest
     {
         return [
             'client_email' => 'required|email|max:255',
-            'partner.name' => 'required|max:255',
+            'partner_id' => 'required|exists:partners,id',
             'status'       => ['required', Rule::in([0, 10, 20])]
         ];
     }

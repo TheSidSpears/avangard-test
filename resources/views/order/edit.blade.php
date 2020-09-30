@@ -18,7 +18,12 @@
     <input type="email" name="client_email" value="{{ $order->client_email }}">
 
     <label for="partner">Partner</label>
-    <input type="text" name="partner[name]" value="{{ $order->partner->name }}">
+    <select name="partner_id">
+        @foreach($partners as $partner)
+            <option value="{{ $partner->id }}"
+                    @if($order->partner == $partner) selected @endif>{{ $partner->name }}</option>
+        @endforeach
+    </select>
 
     <label for="status">Status</label>
     <select name="status">

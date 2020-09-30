@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class Order extends Model
 {
-    protected $fillable = ['client_email', 'status'];
+    protected $fillable = ['client_email', 'status', 'partner_id'];
 
     // todo перенести в транслейт какой-нибудь
     const STATUS_NEW = 'новый';
