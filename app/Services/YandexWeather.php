@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Cache;
 use Psr\Http\Client\ClientInterface;
 
 class YandexWeather implements CurrentTemperature
@@ -19,9 +20,12 @@ class YandexWeather implements CurrentTemperature
 
     public function getCurrentTemperature(float $lat, float $lon): int
     {
-        $responseBody = $this->getResponse($lat, $lon);
+        $temperature = Cache::remember("yandex_weather_{$lat}_{$lon}", 1, function () use ($lat, $lon) {
+            $responseBody = $this->getResponse($lat, $lon);
+            return $responseBody->fact->temp;
+        });
 
-        return $responseBody->fact->temp;
+        return $temperature;
     }
 
     protected function getResponse($lat, $lon): \stdClass
