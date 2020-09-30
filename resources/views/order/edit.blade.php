@@ -1,6 +1,6 @@
-<h1>Продукты</h1>
+<h1>Products</h1>
 @foreach($order->products as $product)
-    <p>Продукт: {{ $product->name }}, кол-во: {{ $product->pivot->quantity }}</p>
+    <p>{{ $product->name }}, count: {{ $product->pivot->quantity }}</p>
 @endforeach
 
 <p>Price: {{ $order->countPrice() }}</p>
@@ -34,3 +34,5 @@
 
     <input type="submit" value="Edit">
 </form>
+
+<a href="{{ route('order.index') }}">Back</a>

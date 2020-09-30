@@ -20,7 +20,7 @@
                     @endif
                 @endforeach
             </td>
-            <td>{{ $order->status }}</td>
+            <td>@lang("order.status.$order->status")</td>
         </tr>
     @endforeach
 </table>

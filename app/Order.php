@@ -11,10 +11,9 @@ class Order extends Model
 {
     protected $fillable = ['client_email', 'status', 'partner_id'];
 
-    // todo перенести в транслейт какой-нибудь
-    const STATUS_NEW = 'новый';
-    const STATUS_CONFIRMED = 'подтверждён';
-    const STATUS_COMPLETED = 'завершен';
+    const STATUS_NEW = 'new';
+    const STATUS_CONFIRMED = 'confirmed';
+    const STATUS_COMPLETED = 'completed';
 
     public $statuses = [
         0  => self::STATUS_NEW,

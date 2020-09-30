@@ -24,12 +24,12 @@ class YandexWeather implements CurrentTemperature
         return $responseBody->fact->temp;
     }
 
-    protected function getResponse(...$options): \stdClass
+    protected function getResponse($lat, $lon): \stdClass
     {
         $response = $this->client->get(route($this->route), [
             'query'   => [
-                'lat'   => $options[0],
-                'lon'   => $options[1],
+                'lat'   => $lat,
+                'lon'   => $lon,
                 'lang'  => 'ru_RU',
                 'limit' => 1,
                 'hours' => false,
