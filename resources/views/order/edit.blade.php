@@ -1,3 +1,12 @@
+<h1>Продукты</h1>
+@foreach($order->products as $product)
+    <p>Продукт: {{ $product->name }}, кол-во: {{ $product->pivot->quantity }}</p>
+@endforeach
+
+<p>Price: {{ $order->countPrice() }}</p>
+
+{{--todo @error--}}
+
 <form action="{{ route('order.update', $order) }}" method="POST">
     {{ csrf_field() }}
     {{ method_field('PUT') }}
@@ -6,12 +15,7 @@
     <input type="email" name="client_email" value="{{ $order->client_email }}">
 
     <label for="partner">Partner</label>
-    <input type="email" name="partner" value="{{ $order->partner->name }}">
-
-    <h1>Продукты</h1>
-    @foreach($order->products as $product)
-        <p>Продукт: {{ $product->name }}, кол-во: {{ $product->pivot->quantity }}</p>
-    @endforeach
+    <input type="text" name="partner[name]" value="{{ $order->partner->name }}">
 
     <label for="status">Status</label>
     <select name="status">
@@ -20,5 +24,5 @@
         @endforeach
     </select>
 
-    <p>Price: {{ $order->countPrice() }}</p>
+    <input type="submit" value="Edit">
 </form>
