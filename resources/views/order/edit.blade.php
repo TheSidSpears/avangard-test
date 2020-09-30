@@ -5,7 +5,10 @@
 
 <p>Price: {{ $order->countPrice() }}</p>
 
-{{--todo @error--}}
+@forelse($errors->all() as $error)
+    <span class="error">{{ $error }}</span>
+@empty
+@endforelse
 
 <form action="{{ route('order.update', $order) }}" method="POST">
     {{ csrf_field() }}
