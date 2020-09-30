@@ -1,38 +1,44 @@
-<h1>Products</h1>
-@foreach($order->products as $product)
-    <p>{{ $product->name }}, count: {{ $product->pivot->quantity }}</p>
-@endforeach
+@extends('layouts.app')
 
-<p>Price: {{ $order->countPrice() }}</p>
+@section('title', 'Orders list')
 
-@forelse($errors->all() as $error)
-    <span class="error">{{ $error }}</span>
-@empty
-@endforelse
+@section('body')
+    <h1>Products</h1>
+    @foreach($order->products as $product)
+        <p>{{ $product->name }}, count: {{ $product->pivot->quantity }}</p>
+    @endforeach
 
-<form action="{{ route('order.update', $order) }}" method="POST">
-    {{ csrf_field() }}
-    {{ method_field('PUT') }}
+    <p>Price: {{ $order->countPrice() }}</p>
 
-    <label for="email">Client e-mail:</label>
-    <input type="email" name="client_email" value="{{ $order->client_email }}">
+    @forelse($errors->all() as $error)
+        <span class="error">{{ $error }}</span>
+    @empty
+    @endforelse
 
-    <label for="partner">Partner</label>
-    <select name="partner_id">
-        @foreach($partners as $partner)
-            <option value="{{ $partner->id }}"
-                    @if($order->partner == $partner) selected @endif>{{ $partner->name }}</option>
-        @endforeach
-    </select>
+    <form action="{{ route('order.update', $order) }}" method="POST">
+        {{ csrf_field() }}
+        {{ method_field('PUT') }}
 
-    <label for="status">Status</label>
-    <select name="status">
-        @foreach($order->statuses as $key => $status)
-            <option value="{{ $key }}" @if($order->status === $status) selected @endif>{{ $status }}</option>
-        @endforeach
-    </select>
+        <label for="email">Client e-mail:</label>
+        <input type="email" name="client_email" value="{{ $order->client_email }}">
 
-    <input type="submit" value="Edit">
-</form>
+        <label for="partner">Partner</label>
+        <select name="partner_id">
+            @foreach($partners as $partner)
+                <option value="{{ $partner->id }}"
+                        @if($order->partner == $partner) selected @endif>{{ $partner->name }}</option>
+            @endforeach
+        </select>
 
-<a href="{{ route('order.index') }}">Back</a>
+        <label for="status">Status</label>
+        <select name="status">
+            @foreach($order->statuses as $key => $status)
+                <option value="{{ $key }}" @if($order->status === $status) selected @endif>{{ $status }}</option>
+            @endforeach
+        </select>
+
+        <input type="submit" value="Edit">
+    </form>
+
+    <a href="{{ route('order.index') }}">Back</a>
+@endsection

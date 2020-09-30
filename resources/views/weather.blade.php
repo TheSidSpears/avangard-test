@@ -1,17 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'Main')
+@section('title', 'Current temperature')
 
 @section('body')
     <div class="flex-center position-ref full-height">
         <div class="content">
             <div class="title m-b-md">
-                Test task
+                Current temperature in {{ $city }} is {{ $currentTemperature }}℃
             </div>
 
             <div class="links">
-                <a href="{{ route('temperature', 'bryansk')}}">Weather in bryansk</a>
-                <a href="{{ route('order.index') }}">Orders</a>
+                <a href="{{ route('index') }}">Go back</a>
             </div>
         </div>
     </div>

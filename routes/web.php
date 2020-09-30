@@ -13,10 +13,10 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 
 Route::resource('order', 'OrderController', [
     'only' => ['index', 'edit', 'update']
 ]);
 
-Route::get('temperature/{city}', 'WeatherController@currentTemperature');
+Route::get('temperature/{city}', 'WeatherController@currentTemperature')->name('temperature');
